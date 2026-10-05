@@ -8,8 +8,6 @@
 -- 1. OBJETIVO
 -- ============================================================
 --
--- CRITERIO DE DISEÑO: 
---
 -- Esta base define ESTRUCTURA y TIPOS, no calidad.
 -- Por eso no incluye restricciones CHECK sobre los valores
 -- (precios, costes, cantidades, importes).
@@ -129,7 +127,7 @@
 --   La devolución no se guarda en el estado, sino en la tabla
 --   devoluciones.
 --
--- IMPORTES DE DEVOLUCIÓN
+--  DEVOLUCIONES
 --  Las devoluciones se atribuyen al año del pedido. Todas
 --  son de 2024.
 --   reembolso     = dinero devuelto al cliente (importe total).
@@ -148,7 +146,6 @@
 -- (MySQL Workbench) a partir de este script.
 --
 --
-
 -- ============================================================
 -- 4. CONSTRUCCIÓN
 -- ============================================================
