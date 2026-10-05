@@ -105,17 +105,18 @@ ORDER BY impacto_devoluciones DESC;
 
 
 -- ============================================================
--- 6. INSIGHTS
+-- 6. IDEA PRINCIPAL DEL PROYECTO
 -- ============================================================
 
--- No basta con mirar quién compra más. Un cliente puede generar
--- muchos ingresos, pero si devuelve una parte importante de sus
--- compras, su aportación real puede ser menor.
---
--- Si las devoluciones pueden reducir de forma significativa
--- el valor generado por determinados clientes, conviene analizar
--- conjuntamente ingresos y devoluciones para identificar
--- clientes de mayor valor.
+-- 1. INGRESOS
+-- No basta con identificar a los clientes que más compran.
+-- También es importante analizar cuánto valor generan realmente.
+
+-- 2. DEVOLUCIONES
+-- Las devoluciones pueden reducir de forma importante el valor
+-- generado por un cliente. Por eso, ingresos y devoluciones
+-- deben analizarse conjuntamente para identificar a los clientes
+-- de mayor valor.
 
 
 -- ============================================================
