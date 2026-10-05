@@ -99,9 +99,31 @@ ORDER BY impacto_devoluciones DESC;
 -- muchos ingresos, las devoluciones están reduciendo de forma
 -- importante el valor que aporta (1364,30 - 604,50 = 759,8 €).
 --
--- Conviene revisar el comportamiento de este cliente y las
--- causas de sus devoluciones, especialmente porque se
--- encuentra entre los clientes que más ingresos generan.
+-- Conviene conocer las causas de sus devoluciones, 
+-- especialmente porque se encuentra entre los clientes
+-- que más ingresos generan.
+
+SELECT 
+    p.id_pedido,
+    p.fecha_pedido,
+    pr.nombre AS producto,
+    cat.nombre_categoria,
+    dp.cantidad AS cantidad_comprada,
+    dp.precio_unitario,
+    dev.cantidad_devuelta,
+    dev.reembolso,
+    dev.coste_gestion,
+    dev.motivo
+FROM pedidos_limpios p
+JOIN detalle_pedidos_limpios dp ON dp.id_pedido = p.id_pedido
+JOIN productos_limpios pr ON pr.id_producto = dp.id_producto
+JOIN categorias_limpios cat ON cat.id_categoria = pr.id_categoria
+LEFT JOIN devoluciones_limpios dev ON dev.id_detalle_pedido = dp.id_detalle_pedido
+WHERE p.id_cliente = 9
+ORDER BY p.fecha_pedido ASC; -- Entre las causas el cliente menciona que: Llegó dañado y no era lo esperado.
+                                -- Como siguiente paso, sería interesante revisar otras opiniones para comprobar:
+                                -- posibles problemas en el estado del producto;
+                                -- diferencias entre la información mostrada en la web y las expectativas del cliente.
 
 -- ============================================================
 -- 6. IDEA PRINCIPAL DEL PROYECTO
@@ -121,6 +143,11 @@ ORDER BY impacto_devoluciones DESC;
 -- Esto es especialmente importante en los clientes que más
 -- ingresos generan, ya que un volumen alto de devoluciones
 -- puede reducir de forma importante sus ingresos finales.
+--
+-- En estos casos, es interesante analizar los motivos de las
+-- devoluciones para determinar si se trata de un comportamiento
+-- específico del cliente o si puede reflejar un problema
+-- que también afecta al conjunto del negocio.
 
 -- ============================================================
 -- FIN
