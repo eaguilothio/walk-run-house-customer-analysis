@@ -42,11 +42,11 @@ Este resultado muestra que un cliente con un volumen elevado de ingresos **no ne
 
 Además, es necesario analizar los **motivos de devolución**. En el caso del cliente 9 aparecen **“Llegó dañado”** y **“No era lo esperado”**. Analizar estos motivos permitiría comprobar si se trata de un comportamiento específico de este cliente o si los mismos problemas se repiten en otros clientes importantes.
 
-En este caso, sería especialmente relevante comprobar en otro proyecto:
+Como siguiente paso, en otro análisis sería especialmente relevante comprobar:
 
-* si se repiten devoluciones relacionadas con el **estado del producto**;
-* si otros clientes mencionan que el producto **no era lo esperado**;
-* si estos problemas se concentran en **determinados productos**.
+- Si se repiten devoluciones relacionadas con el estado del producto;
+- Si otros clientes mencionan que el producto no era lo esperado;
+- Si estos problemas se concentran en determinados productos.
 
 ## Estructura del proyecto
 
