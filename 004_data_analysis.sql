@@ -97,7 +97,7 @@ ORDER BY impacto_devoluciones DESC;
 --
 -- Esto indica que, aunque pueda ser un cliente que genere
 -- muchos ingresos, las devoluciones están reduciendo de forma
--- importante el valor que aporta.
+-- importante el valor que aporta (1364,30 - 604,50 = 759,8 €).
 --
 -- Conviene revisar el comportamiento de este cliente y las
 -- causas de sus devoluciones, especialmente si también se
