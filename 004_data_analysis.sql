@@ -100,9 +100,8 @@ ORDER BY impacto_devoluciones DESC;
 -- importante el valor que aporta (1364,30 - 604,50 = 759,8 €).
 --
 -- Conviene revisar el comportamiento de este cliente y las
--- causas de sus devoluciones, especialmente si también se
+-- causas de sus devoluciones, especialmente porque se
 -- encuentra entre los clientes que más ingresos generan.
-
 
 -- ============================================================
 -- 6. IDEA PRINCIPAL DEL PROYECTO
