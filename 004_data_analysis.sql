@@ -87,21 +87,27 @@ ORDER BY impacto_devoluciones DESC;
 -- con 604,50 €, más del doble que los siguientes clientes
 -- (294,70 €, 254,80 € y 189,70 €).
 
-
 -- ============================================================
--- 5. ANÁLISIS DEL CLIENTE QUE MÁS DEVUELVE
+-- 5. ANÁLISIS DEL CLIENTE CON MAYOR IMPACTO DE DEVOLUCIONES
 -- ============================================================
 
--- El cliente con ID 9 tiene un impacto de devoluciones
+-- ¿Qué cliente presenta el mayor impacto económico por devoluciones?
+--
+-- El cliente con ID 9 presenta un impacto de devoluciones
 -- claramente superior al resto, con 604,50 €.
 --
--- Esto indica que, aunque pueda ser un cliente que genere
--- muchos ingresos, las devoluciones están reduciendo de forma
--- importante el valor que aporta (1364,30 - 604,50 = 759,8 €).
+-- Aunque genera 1.364,30 € en ingresos, las devoluciones
+-- representan 604,50 €, por lo que los ingresos después
+-- de devoluciones se reducen a 759,80 €.
 --
--- Conviene conocer las causas de sus devoluciones, 
--- especialmente porque se encuentra entre los clientes
--- que más ingresos generan.
+-- Las devoluciones representan el 44,3 % de los ingresos
+-- generados por este cliente.
+--
+-- Dado que se encuentra entre los clientes que más ingresos
+-- generan, conviene analizar los motivos de sus devoluciones
+-- para comprobar si se trata de un comportamiento específico
+-- del cliente o si los mismos problemas se repiten en otros
+-- clientes y puede afectar al negocio.
 
 SELECT 
     p.id_pedido,
