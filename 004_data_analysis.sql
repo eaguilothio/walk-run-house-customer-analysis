@@ -117,6 +117,10 @@ ORDER BY impacto_devoluciones DESC;
 -- deben analizarse conjuntamente para identificar a los clientes
 -- de mayor valor.
 
+-- 3. CLIENTES DE MAYOR INGRESO
+-- Esto es especialmente importante en los clientes que más
+-- ingresos generan, ya que un volumen alto de devoluciones
+-- puede reducir de forma importante sus ingresos finales.
 
 -- ============================================================
 -- FIN
