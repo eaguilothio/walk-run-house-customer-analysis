@@ -59,6 +59,7 @@ walk-run-house/
 ├── EER_diagram.pdf
 └── README.md
 ```
+Nota: Las credenciales de conexión a MySQL se almacenan en un archivo .env, que está excluido del repositorio mediante .gitignore.
 
 ## Herramientas
 
