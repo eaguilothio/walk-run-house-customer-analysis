@@ -51,17 +51,18 @@
 --        copia todos los datos de la tabla original.
 --
 --      → UPDATE
---        corrige únicamente los datos de la copia, con un
---        UPDATE por problema.
+--        indica la tabla que se quiere modificar.
+--
+--       → SET    
+--         indica la columna que se quiere modificar
+--         y el nuevo valor.
+--       
+--       → WHERE  
+--        indica las filas que se quieren modificar.
 --
 --      → VALIDACIÓN
 --        se repite la consulta de detección sobre la tabla
 --        limpia y debe devolver 0 filas.
---
--- Las tablas originales se mantienen sin modificar.
---
--- Cuando un dato no se puede reconstruir, se pone a NULL en
--- lugar de inventar un valor.
 --
 --
 -- ============================================================
