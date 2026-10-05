@@ -54,7 +54,7 @@ LIMIT 6;
 -- Se seleccionan los 6 clientes con mayores ingresos para
 -- analizar con más detalle el impacto de sus devoluciones.
 --
--- 31, 9, 19, 1, 34, 13
+-- 31, 9 (1364,30 €), 19, 1, 34, 13
 
 
 -- ============================================================
