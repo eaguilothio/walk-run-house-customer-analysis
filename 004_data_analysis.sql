@@ -106,8 +106,8 @@ ORDER BY impacto_devoluciones DESC;
 -- Dado que se encuentra entre los clientes que más ingresos
 -- generan, conviene analizar los motivos de sus devoluciones
 -- para comprobar si se trata de un comportamiento específico
--- del cliente o si los mismos problemas se repiten en otros
--- clientes y puede afectar de forma relevante al negocio.
+-- del cliente o si los mismos problemas se repiten
+-- y puede afectar de forma relevante al negocio.
 
 SELECT 
     p.id_pedido,
