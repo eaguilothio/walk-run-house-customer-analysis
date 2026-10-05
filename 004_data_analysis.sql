@@ -107,7 +107,7 @@ ORDER BY impacto_devoluciones DESC;
 -- generan, conviene analizar los motivos de sus devoluciones
 -- para comprobar si se trata de un comportamiento específico
 -- del cliente o si los mismos problemas se repiten en otros
--- clientes y puede afectar al negocio.
+-- clientes y puede afectar de forma relevante al negocio.
 
 SELECT 
     p.id_pedido,
