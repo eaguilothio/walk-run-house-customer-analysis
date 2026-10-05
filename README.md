@@ -6,12 +6,7 @@ El proyecto parte del diseño de una base de datos, continúa con la inserción 
 
 ## Objetivo
 
-Analizar el comportamiento de los clientes para conocer:
-
-* qué clientes generan más ingresos;
-* qué impacto económico tienen sus devoluciones.
-
-El objetivo es ir más allá de los ingresos y analizar qué clientes pueden requerir un análisis más detallado teniendo en cuenta también sus devoluciones.
+Analizar si los clientes que más ingresos generan son necesariamente los que más valor aportan. 
 
 ## Proceso
 
@@ -36,7 +31,6 @@ El proyecto se divide en cuatro etapas:
 
    * Cálculo de ingresos por cliente.
    * Análisis del impacto económico de las devoluciones.
-   * Identificación de clientes que requieren un análisis más detallado.
 
 ## Conclusiones
 
