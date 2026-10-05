@@ -38,11 +38,11 @@ El análisis muestra que **no basta con identificar a los clientes que generan m
 
 El **cliente 9** genera **1.364,30 € en ingresos**, pero acumula **604,50 € en devoluciones**, por lo que los ingresos después de devoluciones se reducen a **759,80 €**.
 
-Este resultado muestra que un cliente con un volumen elevado de ingresos **no necesariamente genera el mismo valor una vez consideradas sus devoluciones**.
+Este resultado muestra que **un cliente con un volumen elevado de ingresos no necesariamente genera el mismo valor una vez consideradas sus devoluciones**.
 
-Además, es necesario analizar los **motivos de devolución**. En el caso del cliente 9 aparecen **“Llegó dañado”** y **“No era lo esperado”**. Analizar estos motivos permitiría comprobar si se trata de un comportamiento específico de este cliente o si los mismos problemas se repiten en otros clientes.
+Además, **es necesario analizar los motivos de devolución**. En el caso del cliente 9 aparecen “Llegó dañado” y “No era lo esperado”. Analizar estos motivos permitiría **comprobar si se trata de un comportamiento específico de este cliente o si los mismos problemas se repiten en otros clientes**.
 
-Como siguiente paso, en otro análisis sería especialmente relevante revisar los motivos de devolución de los clientes que generan más ingresos, ya que sus devoluciones tienen un mayor impacto económico, y comprobar si los problemas detectados se repiten en otros clientes o productos.
+Como siguiente paso, en **otro análisis** sería especialmente relevante **revisar los motivos de devolución de los clientes que generan más ingresos**, ya que sus devoluciones tienen un mayor impacto económico, y **comprobar si los problemas detectados se repiten en otros clientes o productos**.
 
 ## Estructura del proyecto
 
