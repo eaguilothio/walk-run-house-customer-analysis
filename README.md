@@ -40,11 +40,12 @@ El proyecto se divide en cuatro etapas:
 
 ## Conclusiones
 
-El análisis muestra que **no basta con identificar a los clientes que generan más ingresos**. También es necesario tener en cuenta las devoluciones, ya que pueden tener un impacto económico importante.
+El análisis muestra que **no basta con identificar a los clientes que generan más ingresos**. También es importante analizar sus devoluciones, ya que pueden reducir de forma significativa los ingresos generados.
 
-En este caso, el **cliente 9 presenta un impacto de devoluciones de 604,50 €**, claramente superior al resto de clientes analizados.
+En este caso, el **cliente 9 presenta 604,50 € en devoluciones**, una cantidad claramente superior a la del resto de clientes analizados. Aunque genera **1.364,30 € en ingresos**, las devoluciones reducen esta cantidad a **759,80 €**.
 
-Por tanto, **ingresos y devoluciones deben analizarse conjuntamente** para identificar qué clientes pueden requerir un análisis más detallado.
+Por tanto, **ingresos y devoluciones deben analizarse conjuntamente**, especialmente en los clientes que generan más ingresos, para detectar aquellos cuyo resultado puede verse afectado de forma importante por las devoluciones.
+
 
 ## Estructura del proyecto
 
