@@ -42,7 +42,7 @@ Este resultado muestra que **un cliente con un volumen elevado de ingresos no ne
 
 Además, **es necesario analizar los motivos de devolución**. En el caso del cliente 9 aparecen “Llegó dañado” y “No era lo esperado”. 
 
-Como siguiente paso, en **otro análisis** sería conviene **analizar los motivos de las devoluciones de los clientes que más ingresos aportan** para comprobar si hay problemas que pueden afectar de forma relevante al negocio.
+Como siguiente paso, en **otro análisis**, sería conveniente **analizar los motivos de las devoluciones de los clientes que más ingresos aportan** para comprobar si se trata de casos aislados o si existen problemas que se repiten y pueden tener un impacto relevante en el negocio.
 
 ## Estructura del proyecto
 
