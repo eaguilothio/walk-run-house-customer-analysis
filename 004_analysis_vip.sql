@@ -83,12 +83,13 @@ WHERE estado = 'completado';
 -- de clientes registrados, ya que un cliente sin compras no puede
 -- entrar en un ranking de ingresos.
 --
--- El 20 % es un criterio definido para este análisis y no una
--- regla fija del negocio.
---
--- El criterio está inspirado en el principio de Pareto (80/20),
--- pero más adelante se comprueba con los datos qué porcentaje
--- de ingresos representa realmente este grupo.
+-- El criterio del 20 % está inspirado en el principio de Pareto (80/20),
+-- según el cual aproximadamente el 20 % de los clientes puede generar
+-- el 80 % de los ingresos.
+-- 
+-- En este análisis se comprueba si esta relación se cumple en el negocio.
+-- Si se cumple, los ingresos están concentrados en los clientes de mayor valor.
+-- Si no se cumple, los ingresos están más distribuidos entre la clientela.
 
 
 -- 4.2. IDENTIFICACIÓN DE LOS 10 CLIENTES VIP
