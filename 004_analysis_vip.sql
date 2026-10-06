@@ -412,16 +412,15 @@ ORDER BY impacto_devoluciones DESC;
 -- para identificar posibles causas de productos defectuosos
 -- o dañados y reducir el impacto de las devoluciones.
 
--- 2. Revisar los clientes VIP con mayor impacto de devoluciones,
--- especialmente los clientes 9, 13 y 15 tras la mejora de
--- los procesos de preparación y envío para ver si hay una disminución
--- en sus devoluciones. 
+-- 2. Revisar los clientes VIP con mayor impacto de devoluciones, 
+-- especialmente los clientes 9, 13 y 15, y realizar un seguimiento 
+-- posterior a la mejora de los procesos de preparación y envío 
+-- para comprobar si disminuyen sus devoluciones.
 
 -- 3. Potenciar la compra de los clientes situados justo por
 -- debajo del grupo VIP mediante acciones de fidelización,
 -- como puntos, descuentos o ventajas para clientes recurrentes,
 -- con el objetivo de aumentar su valor.
-
 
 -- ============================================================
 -- FIN
