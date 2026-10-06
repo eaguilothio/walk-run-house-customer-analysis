@@ -274,6 +274,32 @@ ORDER BY devoluciones DESC;
 -- sino también su impacto económico.
 
 
+-- ¿Qué productos y motivos de devolución se repiten entre los VIP?
+
+SELECT
+    dv.motivo,
+    pdt.nombre AS producto,
+    COUNT(*) AS devoluciones,
+    SUM(dv.reembolso + dv.coste_gestion) AS impacto_devoluciones
+FROM devoluciones_limpios dv
+JOIN detalle_pedidos_limpios d
+    ON d.id_detalle_pedido = dv.id_detalle_pedido
+JOIN pedidos_limpios p
+    ON p.id_pedido = d.id_pedido
+JOIN productos_limpios pdt
+    ON pdt.id_producto = d.id_producto
+WHERE p.estado = 'completado'
+  AND p.id_cliente IN (31, 9, 19, 1, 34, 13, 15, 36, 41, 11)
+GROUP BY dv.motivo, pdt.nombre
+ORDER BY impacto_devoluciones DESC;
+
+-- Las devoluciones no se concentran en productos concretos,
+-- ya que ningún producto acumula un volumen elevado de devoluciones ( entre 1 y 2 devoluciones).
+
+-- QUÉ SIGNIFICA
+-- El análisis apunta más a revisar las causas de devolución global (preparación o envío)
+-- que a un problema específico de determinados productos.
+
 -- ============================================================
 -- 9. CONCLUSIONES
 -- ============================================================
@@ -313,18 +339,17 @@ ORDER BY devoluciones DESC;
 -- concentran 974,00 €, aproximadamente el 56 % del impacto
 -- total de las devoluciones de los VIP.
 --
--- Esto apunta a que parte del problema puede estar relacionado
--- con el estado o la calidad del producto y no únicamente
--- con el comportamiento de los clientes.
+-- El problema puede deberse a la preparación o envío de los pedidos
+-- más que a un problema específico de un producto. 
 
 
 -- ACCIONES
 --
--- 1. Revisar el control de calidad y el estado del producto.
+-- 1. Localizar problemas en preparación o envío de los pedidos.
 --
 -- 2. Revisar los clientes VIP con mayor impacto de devoluciones,
 -- especialmente los clientes 9, 13 y 15, para identificar
--- si con la mejora de la calidad de producto disminuyen las devoluciones.
+-- si con la mejora de la preparación y envío disminuyen las devoluciones.
 --
 -- 3. Potenciar la compra de los clientes situados justo
 -- por debajo del grupo VIP mediante acciones de fidelización,
