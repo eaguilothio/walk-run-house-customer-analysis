@@ -163,9 +163,6 @@ WHERE p.estado = 'completado'
 -- El 20 % de los compradores genera el 39,5 % de los ingresos,
 -- por lo que en este caso no se cumple el principio 80/20.
 --
--- El 20 % se utiliza únicamente como criterio para definir
--- el grupo VIP.
---
 -- Los ingresos están relativamente repartidos y el negocio
 -- no depende mayoritariamente de este grupo de clientes.
 --
