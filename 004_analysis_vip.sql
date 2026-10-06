@@ -7,6 +7,24 @@ USE walk_run_house;
 
 
 -- ============================================================
+-- ÍNDICE
+-- ============================================================
+--
+-- 1. Pregunta de negocio
+-- 2. Datos utilizados
+-- 3. Separación entre clientes compradores y no compradores
+-- 4. Criterio del grupo VIP e identificación de los clientes VIP
+-- 5. Peso del grupo VIP y no VIP en el negocio
+-- 6. Impacto de las devoluciones en los VIP
+-- 7. Valor de los clientes después de devoluciones
+-- 8. Motivos de devolución
+-- 9. Conclusiones
+-- 10. Acciones propuestas
+--
+-- ============================================================
+
+
+-- ============================================================
 -- 1. PREGUNTA DE NEGOCIO
 -- ============================================================
 
@@ -33,7 +51,7 @@ USE walk_run_house;
 
 
 -- ============================================================
--- 3. DEFINICIÓN DE CLIENTE VIP
+-- 3. SEPARACIÓN ENTRE CLIENTES COMPRADORES Y NO COMPRADORES
 -- ============================================================
 
 -- 3.1. ¿Cuántos clientes registrados tenemos?
@@ -52,31 +70,35 @@ WHERE estado = 'completado';
 
 -- Resultado: 48
 --
--- Los otros 2 no han comprado, no aportan ingresos
--- y quedan fuera del análisis.
+-- Los otros 2 clientes no han realizado compras completadas,
+-- por lo que no aportan ingresos y quedan fuera del análisis.
 
 
--- 3.3. CRITERIO VIP
+-- ============================================================
+-- 4. CRITERIO DEL GRUPO VIP E IDENTIFICACIÓN
+-- ============================================================
+
+-- 4.1. CRITERIO VIP
 --
--- Se usa el 20 % por convención, siguiendo el principio de Pareto
--- (80/20): en muchos negocios, aproximadamente el 20 % de los
--- clientes genera el 80 % de los ingresos.
+-- Se utiliza el 20 % de los clientes compradores con mayores
+-- ingresos para definir el grupo VIP.
 --
--- VIP = el 20 % de los clientes compradores con más ingresos.
 -- 20 % de 48 = 9,6 → 10 clientes VIP.
 --
--- Se calcula sobre compradores y no sobre registrados, porque
--- un cliente sin compras no puede entrar en el ranking.
+-- Se calcula sobre los clientes compradores y no sobre el total
+-- de clientes registrados, ya que un cliente sin compras no puede
+-- entrar en un ranking de ingresos.
 --
--- El 20 % es un criterio de analista, no una regla
--- fija. Más adelante se comprueba con los datos qué porcentaje
+-- El 20 % es un criterio definido para este análisis y no una
+-- regla fija del negocio.
+--
+-- El criterio está inspirado en el principio de Pareto (80/20),
+-- pero más adelante se comprueba con los datos qué porcentaje
 -- de ingresos representa realmente este grupo.
 
 
--- ============================================================
--- 4. LOS 10 CLIENTES VIP
--- ============================================================
-
+-- 4.2. IDENTIFICACIÓN DE LOS 10 CLIENTES VIP
+--
 -- ¿Qué 10 clientes generan más ingresos?
 
 SELECT
@@ -108,10 +130,10 @@ LIMIT 10;
 
 
 -- ============================================================
--- 5. PESO DEL GRUPO VIP EN EL NEGOCIO
+-- 5. PESO DEL GRUPO VIP Y NO VIP EN EL NEGOCIO
 -- ============================================================
 
--- ¿Cuánto ingresan los clientes al negocio?
+-- 5.1. ¿Cuánto ingresan todos los clientes?
 
 SELECT
     SUM(d.cantidad * d.precio_unitario) AS ingresos_totales
@@ -123,7 +145,7 @@ WHERE p.estado = 'completado';
 -- Resultado: 25.514,90 €
 
 
--- ¿Qué parte de los ingresos totales representan los VIP?
+-- 5.2. ¿Qué parte de los ingresos totales representan los VIP?
 
 SELECT
     SUM(d.cantidad * d.precio_unitario) AS ingresos_vip
@@ -141,17 +163,16 @@ WHERE p.estado = 'completado'
 -- Porcentaje = 10.074,20 / 25.514,90 * 100 = 39,48 %
 
 
--- QUÉ SIGNIFICA
+-- 5.3. QUÉ SIGNIFICA
 --
 -- El 20 % de los compradores genera el 39,5 % de los ingresos,
--- muy lejos del 80 % de Pareto.
+-- por lo que en este caso no se cumple el principio 80/20.
 --
--- Se usa el 20 % como criterio para definir el grupo VIP,
--- pero los datos muestran que aquí no se cumple el principio
--- 80/20.
+-- El 20 % se utiliza únicamente como criterio para definir
+-- el grupo VIP.
 --
--- El negocio está relativamente repartido y no depende de
--- unos pocos clientes.
+-- Los ingresos están relativamente repartidos y el negocio
+-- no depende mayoritariamente de este grupo de clientes.
 --
 -- LOS VIP SIGUEN SIENDO CLIENTES DE MAYOR VALOR
 --
@@ -161,11 +182,13 @@ WHERE p.estado = 'completado'
 -- unos 406 € por cliente.
 --
 -- El ingreso medio de un VIP es aproximadamente 2,5 veces
--- superior al de un cliente no VIP ( 1.007 € ÷ 406 € = 2,48 ≈ 2,5 veces).
+-- superior al de un cliente no VIP.
+--
+-- 1.007 € ÷ 406 € = 2,48 ≈ 2,5 veces.
 
 
 -- ============================================================
--- 6. DEVOLUCIONES DE LOS VIP
+-- 6. IMPACTO DE LAS DEVOLUCIONES EN LOS VIP
 -- ============================================================
 
 -- ¿Qué impacto económico tienen las devoluciones de los VIP?
@@ -203,19 +226,22 @@ ORDER BY impacto_devoluciones DESC;
 
 
 -- ============================================================
--- 7. VALOR DESPUÉS DE DEVOLUCIONES
+-- 7. VALOR DE LOS CLIENTES DESPUÉS DE DEVOLUCIONES
 -- ============================================================
 
 -- ¿Qué clientes VIP siguen siendo más valiosos después
 -- de tener en cuenta sus devoluciones?
 --
--- Se comparan los ingresos generados con el impacto económico
--- de las devoluciones.
+-- Se compara el ingreso generado por cada cliente con el impacto
+-- económico de sus devoluciones.
 --
--- A nivel global: 
--- Ingresos VIP: 10.074,20 €
--- Impacto de devoluciones: 1.738,30 €
--- Valor real: 8.335,90 €
+-- Valor ajustado = ingresos - reembolso - costes de gestión
+--
+-- A nivel global:
+--
+-- Ingresos VIP:              10.074,20 €
+-- Impacto de devoluciones:   1.738,30 €
+-- Valor ajustado:            8.335,90 €
 --
 -- A nivel de cliente:
 --
@@ -234,15 +260,15 @@ ORDER BY impacto_devoluciones DESC;
 -- ocupa el segundo puesto por ingresos, pero baja al séptimo
 -- puesto después de tener en cuenta las devoluciones.
 --
--- Los clientes 9, 13 y 15 son los que presentan un mayor
--- porcentaje de ingresos afectados por devoluciones.
+-- Los clientes 9, 13 y 15 presentan el mayor porcentaje
+-- de ingresos afectados por devoluciones.
 
 
 -- ============================================================
 -- 8. MOTIVOS DE DEVOLUCIÓN
 -- ============================================================
 
--- ¿Qué motivos de devolución se repiten entre los VIP?
+-- 8.1. ¿Qué motivos de devolución se repiten entre los VIP?
 
 SELECT
     dv.motivo,
@@ -274,7 +300,7 @@ ORDER BY devoluciones DESC;
 -- sino también su impacto económico.
 
 
--- ¿Qué productos y motivos de devolución se repiten entre los VIP?
+-- 8.2. ¿Qué productos y motivos de devolución se repiten entre los VIP?
 
 SELECT
     dv.motivo,
@@ -294,11 +320,20 @@ GROUP BY dv.motivo, pdt.nombre
 ORDER BY impacto_devoluciones DESC;
 
 -- Las devoluciones no se concentran en productos concretos,
--- ya que ningún producto acumula un volumen elevado de devoluciones ( entre 1 y 2 devoluciones).
+-- ya que ningún producto acumula un volumen elevado de devoluciones
+-- (entre 1 y 2 devoluciones).
+
 
 -- QUÉ SIGNIFICA
--- El análisis apunta a revisar los procesos de preparación y envío,
--- ya que las devoluciones no se concentran en productos concretos.
+--
+-- Las devoluciones no se concentran en un producto concreto.
+--
+-- Además, "producto defectuoso" y "llegó dañado" concentran
+-- una parte importante del impacto económico.
+--
+-- Por ello, se propone revisar los procesos de calidad,
+-- preparación y envío para identificar posibles causas.
+
 
 -- ============================================================
 -- 9. CONCLUSIONES
@@ -322,7 +357,7 @@ ORDER BY impacto_devoluciones DESC;
 -- 2. VALOR DESPUÉS DE DEVOLUCIONES
 --
 -- Las devoluciones tienen un impacto total de 1.738,30 €
--- sobre los VIP, reduciendo el valor del grupo de
+-- sobre los VIP, reduciendo el valor ajustado del grupo de
 -- 10.074,20 € a 8.335,90 €.
 --
 -- El cliente 9 destaca especialmente: aunque ocupa el segundo
@@ -339,22 +374,28 @@ ORDER BY impacto_devoluciones DESC;
 -- concentran 974,00 €, aproximadamente el 56 % del impacto
 -- total de las devoluciones de los VIP.
 --
--- El análisis apunta a revisar los procesos de preparación y envío,
--- ya que las devoluciones no se concentran en productos concretos.
+-- Las devoluciones no se concentran en productos concretos.
+--
+-- Por ello, conviene revisar los procesos de calidad,
+-- preparación y envío.
 
 
--- ACCIONES
+-- ============================================================
+-- 10. ACCIONES PROPUESTAS
+-- ============================================================
+
+-- 1. Revisar los procesos de calidad, preparación y envío
+-- para identificar posibles causas de productos defectuosos
+-- o dañados.
 --
--- 1. Localizar problemas en preparación o envío de los pedidos.
+-- 2. Analizar las devoluciones de los clientes VIP con mayor
+-- impacto, especialmente los clientes 9, 13 y 15, para
+-- identificar posibles patrones y causas.
 --
--- 2. Analizar las devoluciones de los clientes VIP con mayor impacto,
--- especialmente los clientes 9, 13 y 15, para comprobar si las
--- mejoras en preparación y envío reducen su impacto de devoluciones.
---
--- 3. Potenciar la compra de los clientes situados justo
--- por debajo del grupo VIP mediante acciones de fidelización,
+-- 3. Potenciar la compra de los clientes situados justo por
+-- debajo del grupo VIP mediante acciones de fidelización,
 -- como puntos, descuentos o ventajas para clientes recurrentes,
--- con el objetivo de aumentar su valor y acercarlos al grupo VIP.
+-- con el objetivo de aumentar su valor.
 
 
 -- ============================================================
