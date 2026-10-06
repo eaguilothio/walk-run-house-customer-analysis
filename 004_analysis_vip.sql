@@ -320,13 +320,11 @@ ORDER BY devoluciones DESC;
 
 -- ACCIONES
 --
--- 1. Revisar el control de calidad y el estado del producto,
--- especialmente en los casos de producto defectuoso
--- y producto que llega dañado.
+-- 1. Revisar el control de calidad y el estado del producto.
 --
 -- 2. Revisar los clientes VIP con mayor impacto de devoluciones,
 -- especialmente los clientes 9, 13 y 15, para identificar
--- si existe algún patrón en sus compras o devoluciones.
+-- si con la mejora de la calidad de producto disminuyen las devoluciones.
 --
 -- 3. Potenciar la compra de los clientes situados justo
 -- por debajo del grupo VIP mediante acciones de fidelización,
