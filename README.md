@@ -123,6 +123,7 @@ El análisis muestra que:
 Analizar los casos de productos defectuosos o dañados para identificar posibles causas y reducir el impacto de las devoluciones.
 
 **2. Hacer seguimiento del cliente VIP con mayor impacto de devoluciones**
+
 Analizar especialmente el cliente 9, que presenta el mayor impacto de devoluciones, y realizar un seguimiento posterior a la mejora de los procesos de preparación y envío para comprobar si disminuyen sus devoluciones.
 
 **3. Trabajar la fidelización de los clientes próximos al grupo VIP**
