@@ -1,6 +1,6 @@
 -- ============================================================
 -- WALK & RUN HOUSE
--- ANÁLISIS DE CLIENTES VIP
+-- ANÁLISIS DEL VALOR DE CLIENTES VIP
 -- ============================================================
 
 USE walk_run_house;
@@ -12,14 +12,15 @@ USE walk_run_house;
 --
 -- 1. Pregunta de negocio
 -- 2. Datos utilizados
--- 3. Separación entre clientes compradores y no compradores
--- 4. Criterio del grupo VIP e identificación de los clientes VIP
--- 5. Peso del grupo VIP y no VIP en el negocio
--- 6. Impacto de las devoluciones en los VIP
--- 7. Valor de los clientes después de devoluciones
--- 8. Motivos de devolución
--- 9. Conclusiones
--- 10. Acciones propuestas
+-- 3. ¿Quién compra?
+-- 4. ¿Quién genera más ingresos?
+-- 5. ¿Se cumple el principio de Pareto?
+-- 6. ¿Qué peso tienen los clientes VIP?
+-- 7. ¿Qué pasa con las devoluciones?
+-- 8. ¿Cuál es el valor real de los clientes VIP?
+-- 9. ¿Por qué se producen las devoluciones?
+-- 10. Conclusiones
+-- 11. Acciones propuestas
 --
 -- ============================================================
 
@@ -28,7 +29,9 @@ USE walk_run_house;
 -- 1. PREGUNTA DE NEGOCIO
 -- ============================================================
 
--- ¿Qué clientes aportan mayor valor al negocio teniendo en cuenta sus ingresos y devoluciones?
+-- ¿Qué clientes aportan mayor valor al negocio teniendo en cuenta
+-- sus ingresos y devoluciones?
+
 
 -- ============================================================
 -- 2. DATOS UTILIZADOS
@@ -40,13 +43,15 @@ USE walk_run_house;
 -- - pedidos_limpios
 -- - detalle_pedidos_limpios
 -- - devoluciones_limpios
+-- - productos_limpios
 --
 -- Solo se consideran pedidos con estado "completado".
 
 
 -- ============================================================
--- 3. SEPARACIÓN ENTRE CLIENTES COMPRADORES Y NO COMPRADORES
+-- 3. ¿QUIÉN COMPRA?
 -- ============================================================
+
 
 -- 3.1. ¿Cuántos clientes registrados tenemos?
 
@@ -69,11 +74,9 @@ WHERE estado = 'completado';
 
 
 -- ============================================================
--- 4. CRITERIO DEL GRUPO VIP E IDENTIFICACIÓN
+-- 4. ¿QUIÉN GENERA MÁS INGRESOS?
 -- ============================================================
 
--- 4.1. CRITERIO VIP
---
 -- Se utiliza el 20 % de los clientes compradores con mayores
 -- ingresos para definir el grupo VIP.
 --
@@ -86,14 +89,12 @@ WHERE estado = 'completado';
 -- El criterio del 20 % está inspirado en el principio de Pareto (80/20),
 -- según el cual aproximadamente el 20 % de los clientes puede generar
 -- el 80 % de los ingresos.
--- 
+--
 -- En este análisis se comprueba si esta relación se cumple en el negocio.
 -- Si se cumple, los ingresos están concentrados en los clientes de mayor valor.
 -- Si no se cumple, los ingresos están más distribuidos entre la clientela.
 
 
--- 4.2. IDENTIFICACIÓN DE LOS 10 CLIENTES VIP
---
 -- ¿Qué 10 clientes generan más ingresos?
 
 SELECT
@@ -125,8 +126,9 @@ LIMIT 10;
 
 
 -- ============================================================
--- 5. PESO DEL GRUPO VIP Y NO VIP EN EL NEGOCIO
+-- 5. ¿SE CUMPLE EL PRINCIPIO DE PARETO?
 -- ============================================================
+
 
 -- 5.1. ¿Cuánto ingresan todos los clientes?
 
@@ -158,29 +160,42 @@ WHERE p.estado = 'completado'
 -- Porcentaje = 10.074,20 / 25.514,90 * 100 = 39,48 %
 
 
--- 5.3. QUÉ SIGNIFICA
+-- QUÉ SIGNIFICA
 --
 -- El 20 % de los compradores genera el 39,5 % de los ingresos,
--- por lo que en este caso no se cumple el principio 80/20.
+-- por lo que en este caso no se cumple una distribución 80/20.
 --
 -- Los ingresos están relativamente repartidos y el negocio
--- no depende mayoritariamente de este grupo de clientes.
+-- no depende mayoritariamente de los clientes VIP.
+
+
+-- ============================================================
+-- 6. ¿QUÉ PESO TIENEN LOS CLIENTES VIP?
+-- ============================================================
+
+-- Los 10 clientes VIP generan 10.074,20 €,
+-- aproximadamente el 39,5 % de los ingresos totales.
 --
--- LOS VIP SIGUEN SIENDO CLIENTES DE MAYOR VALOR
+-- Los 38 clientes no VIP generan 15.440,70 €,
+-- aproximadamente el 60,5 % restante.
+
+
+-- Ingreso medio por cliente:
 --
--- Cada VIP genera de media unos 1.007 €.
---
--- Los no VIP generan 15.440,70 € entre 38 clientes,
--- unos 406 € por cliente.
+-- Cliente VIP: aproximadamente 1.007 €.
+-- Cliente no VIP: aproximadamente 406 €.
 --
 -- El ingreso medio de un VIP es aproximadamente 2,5 veces
 -- superior al de un cliente no VIP.
 --
 -- 1.007 € ÷ 406 € = 2,48 ≈ 2,5 veces.
+--
+-- Por tanto, aunque los ingresos están relativamente repartidos,
+-- los clientes VIP tienen un valor individual claramente superior.
 
 
 -- ============================================================
--- 6. IMPACTO DE LAS DEVOLUCIONES EN LOS VIP
+-- 7. ¿QUÉ PASA CON LAS DEVOLUCIONES?
 -- ============================================================
 
 -- ¿Qué impacto económico tienen las devoluciones de los VIP?
@@ -204,6 +219,7 @@ WHERE p.estado = 'completado'
 GROUP BY p.id_cliente, c.nombre
 ORDER BY impacto_devoluciones DESC;
 
+
 -- Impacto por cliente:
 --
 -- 9  (604,50)
@@ -217,24 +233,35 @@ ORDER BY impacto_devoluciones DESC;
 -- 31, 34, 36 y 41.
 
 
+-- QUÉ SIGNIFICA
+--
+-- Las devoluciones tienen un impacto relevante dentro del grupo VIP.
+--
+-- El impacto no está repartido de la misma manera entre todos
+-- los clientes.
+--
+-- Esto muestra que el valor de los clientes VIP no depende
+-- únicamente de los ingresos que generan, sino también del
+-- impacto económico de sus devoluciones.
+
+
 -- ============================================================
--- 7. VALOR DE LOS CLIENTES DESPUÉS DE DEVOLUCIONES
+-- 8. ¿CUÁL ES EL VALOR REAL DE LOS CLIENTES VIP?
 -- ============================================================
 
--- ¿Qué clientes VIP siguen siendo más valiosos después
--- de tener en cuenta sus devoluciones?
---
 -- Se compara el ingreso generado por cada cliente con el impacto
 -- económico de sus devoluciones.
 --
 -- Valor real = ingresos - reembolso - costes de gestión
---
+
+
 -- A nivel global:
 --
 -- Ingresos VIP:              10.074,20 €
 -- Impacto de devoluciones:   1.738,30 €
--- Valor real global:         8.335,90 €
---
+-- Valor real:                 8.335,90 €
+
+
 -- Valor real a nivel de cliente:
 --
 -- Cliente 31: 1.613,50 - 0       = 1.613,50 €
@@ -247,20 +274,30 @@ ORDER BY impacto_devoluciones DESC;
 -- Cliente 11:   782,10 - 99,90   =   682,20 €
 -- Cliente 13:   882,90 - 294,70  =   588,20 €
 -- Cliente 15:   794,30 - 294,70  =   499,60 €
+
+
+-- QUÉ SIGNIFICA
 --
 -- El cliente 9 es especialmente relevante:
 -- ocupa el segundo puesto por ingresos, pero baja al séptimo
 -- puesto después de tener en cuenta las devoluciones.
 --
+-- Sus ingresos pasan de 1.364,30 € a 759,80 € de valor real.
+--
 -- Los clientes 9, 13 y 15 presentan el mayor porcentaje
 -- de ingresos afectados por devoluciones.
+--
+-- Esto muestra que para conocer el valor real de un cliente
+-- no basta con analizar sus ingresos, sino que también hay que
+-- considerar el impacto de sus devoluciones.
 
 
 -- ============================================================
--- 8. MOTIVOS DE DEVOLUCIÓN
+-- 9. ¿POR QUÉ SE PRODUCEN LAS DEVOLUCIONES?
 -- ============================================================
 
--- 8.1. ¿Qué motivos de devolución se repiten entre los VIP?
+
+-- 9.1. ¿Qué motivos de devolución se repiten entre los VIP?
 
 SELECT
     dv.motivo,
@@ -292,7 +329,7 @@ ORDER BY devoluciones DESC;
 -- sino también su impacto económico.
 
 
--- 8.2. ¿Qué productos y motivos de devolución se repiten entre los VIP?
+-- 9.2. ¿Qué productos y motivos de devolución se repiten entre los VIP?
 
 SELECT
     dv.motivo,
@@ -311,14 +348,12 @@ WHERE p.estado = 'completado'
 GROUP BY dv.motivo, pdt.nombre
 ORDER BY impacto_devoluciones DESC;
 
--- Las devoluciones no se concentran en productos concretos,
--- ya que ningún producto acumula un volumen elevado de devoluciones
--- (entre 1 y 2 devoluciones).
-
 
 -- QUÉ SIGNIFICA
 --
--- Las devoluciones no se concentran en un producto concreto.
+-- Las devoluciones no se concentran en un producto concreto,
+-- ya que ningún producto acumula un volumen elevado de devoluciones
+-- (entre 1 y 2 devoluciones).
 --
 -- Además, "producto defectuoso" y "llegó dañado" concentran
 -- una parte importante del impacto económico.
@@ -328,62 +363,60 @@ ORDER BY impacto_devoluciones DESC;
 
 
 -- ============================================================
--- 9. CONCLUSIONES
+-- 10. CONCLUSIONES
 -- ============================================================
 
--- 1. PESO DEL GRUPO VIP
+-- 1. ¿QUÉ PESO TIENEN LOS CLIENTES VIP?
 --
--- Los 10 clientes VIP (20 % de los compradores) generan
--- 10.074,20 €, el 39,5 % de los ingresos totales.
+-- Los 10 clientes VIP, que representan el 20 % de los compradores,
+-- generan 10.074,20 €, el 39,5 % de los ingresos totales.
 --
--- El negocio no depende de unos pocos clientes, ya que los VIP
--- no concentran la mayor parte de los ingresos.
+-- Los datos no muestran una distribución 80/20, por lo que
+-- los ingresos están relativamente repartidos entre la clientela.
 --
--- Sin embargo, cada VIP genera de media unos 1.007 €,
--- frente a unos 406 € por cliente no VIP.
---
--- Por tanto, los VIP siguen siendo clientes de mayor valor,
--- aunque las ventas estén relativamente repartidas.
+-- Sin embargo, los VIP siguen siendo clientes de mayor valor:
+-- generan de media unos 1.007 €, frente a unos 406 € por cliente no VIP.
 
 
--- 2. VALOR DESPUÉS DE DEVOLUCIONES
+-- 2. ¿QUÉ PASA CON LAS DEVOLUCIONES?
 --
 -- Las devoluciones tienen un impacto total de 1.738,30 €
--- sobre los VIP, reduciendo el valor ajustado del grupo de
--- 10.074,20 € a 8.335,90 €.
+-- sobre los VIP, reduciendo los ingresos generados de
+-- 10.074,20 € a un valor real de 8.335,90 €.
 --
 -- El cliente 9 destaca especialmente: aunque ocupa el segundo
--- puesto por ingresos, las devoluciones reducen su valor ajustado
+-- puesto por ingresos, las devoluciones reducen su valor real
 -- hasta 759,80 €.
 --
--- Los clientes 9, 13 y 15 presentan el mayor porcentaje
--- de ingresos afectados por devoluciones.
+-- Por tanto, analizar únicamente los ingresos puede sobreestimar
+-- el valor de determinados clientes.
 
 
--- 3. MOTIVOS DE DEVOLUCIÓN
+-- 3. ¿POR QUÉ SE PRODUCEN LAS DEVOLUCIONES?
 --
 -- Los motivos "producto defectuoso" y "llegó dañado"
 -- concentran 974,00 €, aproximadamente el 56 % del impacto
 -- total de las devoluciones de los VIP.
 --
--- Las devoluciones no se concentran en productos concretos.
+-- Las devoluciones no se concentran en un producto concreto.
 --
 -- Por ello, conviene revisar los procesos de calidad,
 -- preparación y envío.
 
 
 -- ============================================================
--- 10. ACCIONES PROPUESTAS
+-- 11. ACCIONES PROPUESTAS
 -- ============================================================
 
--- 1. Revisar los procesos de calidad, preparación y envío
+-- 1. Revisar los procesos de preparación y envío
 -- para identificar posibles causas de productos defectuosos
--- o dañados.
---
--- 2. Analizar las devoluciones de los clientes VIP con mayor
--- impacto, especialmente los clientes 9, 13 y 15, para
--- identificar posibles patrones y causas.
---
+-- o dañados y reducir el impacto de las devoluciones.
+
+-- 2. Revisar los clientes VIP con mayor impacto de devoluciones,
+-- especialmente los clientes 9, 13 y 15 tras la mejora de
+-- los procesos de preparación y envío para ver si hay una disminución
+-- en sus devoluciones. 
+
 -- 3. Potenciar la compra de los clientes situados justo por
 -- debajo del grupo VIP mediante acciones de fidelización,
 -- como puntos, descuentos o ventajas para clientes recurrentes,
