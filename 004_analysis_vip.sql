@@ -28,9 +28,7 @@ USE walk_run_house;
 -- 1. PREGUNTA DE NEGOCIO
 -- ============================================================
 
--- Dentro de nuestros clientes, ¿Quién es realmente
--- valioso?
---
+-- ¿Qué clientes aportan mayor valor al negocio teniendo en cuenta sus ingresos y devoluciones?
 
 -- ============================================================
 -- 2. DATOS UTILIZADOS
