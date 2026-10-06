@@ -87,10 +87,6 @@ Esto muestra que pertenecer al grupo VIP por volumen de ingresos no significa ne
 
 ## 7. Valor de los clientes después de devoluciones
 
-Para valorar mejor a cada cliente se calcula un valor ajustado:
-
-**Valor ajustado = ingresos − reembolsos − costes de gestión**
-
 El resultado permite comparar el valor de los clientes después de considerar el impacto económico de sus devoluciones.
 
 El cliente 9 es el caso más relevante: pasa de ser el **segundo cliente con mayores ingresos** a ocupar una posición mucho más baja cuando se tienen en cuenta sus devoluciones.
