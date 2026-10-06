@@ -2,7 +2,7 @@
 
 Proyecto de análisis de datos con **SQL** sobre una tienda de calzado ficticia.
 
-El objetivo es identificar 1) si los ingresos están concentrados en un pequeño grupo de clientes y 2) qué clientes tienen mayor valor para el negocio. Para ello, además de analizar los ingresos, se tiene en cuenta el impacto económico de las devoluciones.
+El objetivo es identificar **1) si los ingresos están concentrados en un pequeño grupo de clientes y 2) qué clientes tienen mayor valor para el negocio**. Para ello, además de analizar los ingresos, se tiene en cuenta el impacto económico de las devoluciones.
 
 ## Pregunta de negocio
 
@@ -47,8 +47,6 @@ La base de clientes compradores está formada por **48 clientes**:
 
 Por tanto, los clientes se ordenan de mayor a menor según los ingresos generados y los **10 primeros forman el grupo VIP**.
 
-Los ingresos se calculan a partir de la cantidad vendida y el precio unitario de los productos incluidos en los **pedidos completados**.
-
 ---
 
 ## ¿Se cumple el principio de Pareto?
@@ -72,7 +70,7 @@ Aunque la mayor parte de los ingresos procede de los clientes no VIP, existe una
 
 Un cliente VIP genera de media unas **2,5 veces más ingresos** que un cliente no VIP.
 
-Por tanto, aunque los ingresos totales están relativamente distribuidos, los clientes VIP tienen un **valor grupal claramente superior**.
+Por tanto, aunque los ingresos totales están relativamente distribuidos, los clientes VIP tienen un **valor individual claramente superior**.
 
 ---
 
@@ -111,7 +109,7 @@ El análisis muestra que:
 
 * El grupo VIP representa el **20 % de los clientes compradores**, pero genera aproximadamente el **39,5 % de los ingresos**.
 * Los datos **no muestran una distribución 80/20**. Los ingresos están relativamente distribuidos entre la clientela.
-* Los clientes VIP tienen un valor grupal superior y generan de media unas **2,5 veces más ingresos** que los clientes no VIP.
+* Los clientes VIP tienen un **valor individual superior** y generan de media unas **2,5 veces más ingresos** que los clientes no VIP.
 * Dentro del grupo VIP existen diferencias importantes en el impacto de las devoluciones.
 * Los motivos **"producto defectuoso"** y **"llegó dañado"** concentran aproximadamente el **56 % del impacto económico** de las devoluciones de los VIP.
 * No se observa una **concentración clara de las devoluciones en un producto concreto**.
@@ -126,10 +124,9 @@ Analizar los casos de productos defectuosos o dañados para identificar posibles
 
 **2. Hacer seguimiento del cliente VIP con mayor impacto de devoluciones**
 
-Analizar especialmente los clientes **9** y realizar un seguimiento posterior a la mejora de los procesos de preparación y envío para comprobar si disminuyen sus devoluciones.
+Analizar especialmente el cliente **9** y realizar un seguimiento posterior a la mejora de los procesos de preparación y envío para comprobar si disminuyen sus devoluciones.
 
 **3. Trabajar la fidelización de los clientes próximos al grupo VIP**
 
 Identificar a los clientes que generan ingresos elevados pero todavía no pertenecen al grupo VIP y plantear acciones de fidelización, como **ventajas por recurrencia, programas de puntos o promociones personalizadas**, con el objetivo de aumentar su valor.
-
 
