@@ -2,7 +2,7 @@
 
 Proyecto de análisis de datos con **SQL** sobre una tienda de calzado ficticia.
 
-El objetivo es identificar **1) si los ingresos están concentrados en un pequeño grupo de clientes y 2) qué clientes tienen mayor valor para el negocio**. Para ello, además de analizar los ingresos, se tiene en cuenta el impacto económico de las devoluciones.
+Los objetivos son identificar **1) si los ingresos están concentrados en un pequeño grupo de clientes y 2) qué clientes tienen mayor valor para el negocio**. Para ello, además de analizar los ingresos, se tiene en cuenta el impacto económico de las devoluciones.
 
 ## Pregunta de negocio
 
