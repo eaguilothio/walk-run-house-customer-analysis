@@ -15,8 +15,7 @@ Para ello, el análisis busca responder a las siguientes preguntas:
 * ¿Qué impacto tienen las devoluciones sobre el valor de los clientes?
 * ¿Qué clientes siguen siendo más valiosos después de considerar las devoluciones?
 * ¿Cuáles son los principales motivos de devolución?
-* ¿Las devoluciones se concentran en determinados productos?
-
+  
 ## Proceso
 
 El proyecto se divide en cuatro etapas:
@@ -44,8 +43,7 @@ El proyecto se divide en cuatro etapas:
 * Comparación de los ingresos medios entre clientes VIP y no VIP.
 * Análisis del impacto económico de las devoluciones.
 * Comparación del valor de los clientes antes y después de considerar las devoluciones.
-* Análisis de los principales motivos de devolución.
-* Análisis de la distribución de las devoluciones por producto.
+* Análisis de los principales motivos de devolución y la distribución de las devoluciones por producto.
 
 ## Principales resultados
 
@@ -80,8 +78,6 @@ Este caso muestra que un cliente que inicialmente se encuentra entre los que má
 Los principales motivos de devolución son **“producto defectuoso”** y **“llegó dañado”**.
 
 En conjunto, representan **974 €**, aproximadamente el **56 % del impacto total de las devoluciones de los clientes VIP**.
-
-### Distribución por producto
 
 El análisis de las devoluciones por producto no muestra una concentración relevante: **ningún producto acumula un volumen elevado de devoluciones**.
 
