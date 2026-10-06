@@ -1,4 +1,4 @@
-# Walk & Run House — Análisis de clientes
+# Walk & Run House — Análisis del valor de clientes
 
 Proyecto de análisis de datos con **SQL** sobre una tienda de calzado ficticia.
 
