@@ -28,13 +28,9 @@ USE walk_run_house;
 -- 1. PREGUNTA DE NEGOCIO
 -- ============================================================
 
--- Dentro de nuestros mejores clientes (VIP), ¿quién es realmente
--- valioso una vez descontadas las devoluciones y a quién
--- conviene revisar?
+-- Dentro de nuestros clientes, ¿Quién es realmente
+-- valioso?
 --
--- No se compara VIP contra no VIP: se compara el grupo VIP
--- entre sí.
-
 
 -- ============================================================
 -- 2. DATOS UTILIZADOS
