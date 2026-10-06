@@ -297,8 +297,8 @@ ORDER BY impacto_devoluciones DESC;
 -- ya que ningún producto acumula un volumen elevado de devoluciones ( entre 1 y 2 devoluciones).
 
 -- QUÉ SIGNIFICA
--- El análisis apunta más a revisar las causas de devolución global (preparación o envío)
--- que a un problema específico de determinados productos.
+-- El análisis apunta a revisar los procesos de preparación y envío,
+-- ya que las devoluciones no se concentran en productos concretos.
 
 -- ============================================================
 -- 9. CONCLUSIONES
@@ -339,17 +339,17 @@ ORDER BY impacto_devoluciones DESC;
 -- concentran 974,00 €, aproximadamente el 56 % del impacto
 -- total de las devoluciones de los VIP.
 --
--- El problema puede deberse a la preparación o envío de los pedidos
--- más que a un problema específico de un producto. 
+-- El análisis apunta a revisar los procesos de preparación y envío,
+-- ya que las devoluciones no se concentran en productos concretos.
 
 
 -- ACCIONES
 --
 -- 1. Localizar problemas en preparación o envío de los pedidos.
 --
--- 2. Revisar los clientes VIP con mayor impacto de devoluciones,
--- especialmente los clientes 9, 13 y 15, para identificar
--- si con la mejora de la preparación y envío disminuyen las devoluciones.
+-- 2. Analizar las devoluciones de los clientes VIP con mayor impacto,
+-- especialmente los clientes 9, 13 y 15, para comprobar si las
+-- mejoras en preparación y envío reducen su impacto de devoluciones.
 --
 -- 3. Potenciar la compra de los clientes situados justo
 -- por debajo del grupo VIP mediante acciones de fidelización,
