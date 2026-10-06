@@ -235,15 +235,15 @@ ORDER BY impacto_devoluciones DESC;
 -- Se compara el ingreso generado por cada cliente con el impacto
 -- económico de sus devoluciones.
 --
--- Valor ajustado = ingresos - reembolso - costes de gestión
+-- Valor real = ingresos - reembolso - costes de gestión
 --
 -- A nivel global:
 --
 -- Ingresos VIP:              10.074,20 €
 -- Impacto de devoluciones:   1.738,30 €
--- Valor ajustado:            8.335,90 €
+-- Valor real global:         8.335,90 €
 --
--- A nivel de cliente:
+-- Valor real a nivel de cliente:
 --
 -- Cliente 31: 1.613,50 - 0       = 1.613,50 €
 -- Cliente 34:   934,00 - 0       =   934,00 €
