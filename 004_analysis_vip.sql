@@ -470,21 +470,6 @@ ORDER BY impacto_devoluciones DESC;
 
 -- 2. Hacer seguimiento del cliente VIP con mayor impacto
 -- de devoluciones.
---
--- Analizar especialmente el cliente 9, que presenta
--- el mayor impacto de devoluciones, y realizar un seguimiento
--- posterior a la mejora de los procesos de preparación y envío
--- para comprobar si disminuyen sus devoluciones.
-
-
--- 3. Trabajar la fidelización de los clientes próximos
--- al grupo VIP.
---
--- Identificar a los clientes que generan ingresos elevados
--- pero todavía no pertenecen al grupo VIP y plantear acciones
--- de fidelización, como ventajas por recurrencia, programas
--- de puntos o promociones personalizadas, con el objetivo
--- de aumentar su valor.
 
 
 -- ============================================================
