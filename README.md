@@ -1,113 +1,142 @@
-# Walk & Run House — Análisis del valor de clientes
+# Walk & Run House — Análisis del valor de clientes VIP
 
 Proyecto de análisis de datos con **SQL** sobre una tienda de calzado ficticia.
 
-El proyecto analiza el valor de los clientes a partir de los **ingresos generados y el impacto económico de sus devoluciones**, con especial atención al grupo de clientes VIP.
+El proyecto parte del diseño de una base de datos, continúa con la inserción y limpieza de los datos y termina con un análisis del valor de los clientes, teniendo en cuenta tanto los ingresos generados como el impacto de las devoluciones.
 
-## Objetivo
+## 1. Pregunta de negocio
 
-Determinar qué clientes generan mayor valor para el negocio y comprobar si los clientes que más ingresos generan siguen siendo los más valiosos después de considerar sus devoluciones.
+Dentro de nuestros mejores clientes (VIP), ¿quién es realmente valioso una vez descontado el impacto de las devoluciones y a quién conviene revisar?
 
-Para ello, el análisis busca responder a las siguientes preguntas:
+El análisis se centra en comparar los clientes del grupo VIP entre sí para identificar diferencias en el valor que generan y detectar posibles oportunidades de mejora.
 
-* ¿Qué clientes generan más ingresos?
-* ¿Qué peso tienen los clientes VIP sobre los ingresos totales?
-* ¿Qué impacto tienen las devoluciones sobre el valor de los clientes?
-* ¿Qué clientes siguen siendo más valiosos después de considerar las devoluciones?
-* ¿Cuáles son los principales motivos de devolución?
-  
-## Proceso
+## 2. Datos utilizados
 
-El proyecto se divide en cuatro etapas:
+Para el análisis se utilizan las siguientes tablas:
 
-### 1. Diseño de la base de datos
+* `clientes_limpios`
+* `pedidos_limpios`
+* `detalle_pedidos_limpios`
+* `devoluciones_limpios`
+* `productos_limpios`
 
-* Creación de las tablas.
-* Definición de las relaciones entre clientes, pedidos, productos y devoluciones.
+Se consideran únicamente los pedidos con estado **completado**.
 
-### 2. Inserción de datos
+## 3. Separación entre clientes compradores y no compradores
 
-* Carga de los datos en la base de datos.
-* Inclusión deliberada de algunas anomalías para trabajar posteriormente la calidad del dato.
+La base de datos contiene **50 clientes registrados**.
 
-### 3. Auditoría y limpieza
+Al analizar los pedidos completados, se observa que:
 
-* Identificación y corrección de anomalías.
-* Creación de tablas `_limpios` para conservar los datos originales y trabajar sobre una versión depurada.
+* **48 clientes** han realizado al menos una compra.
+* **2 clientes** no tienen compras completadas.
 
-### 4. Análisis de clientes
+Esta separación permite trabajar con los clientes que realmente han generado ingresos para el negocio.
 
-* Identificación de clientes compradores.
-* Definición del grupo VIP formado por el 20 % de los clientes compradores con mayores ingresos.
-* Análisis del peso de los clientes VIP sobre los ingresos totales.
-* Comparación de los ingresos medios entre clientes VIP y no VIP.
-* Análisis del impacto económico de las devoluciones.
-* Comparación del valor de los clientes antes y después de considerar las devoluciones.
-* Análisis de los principales motivos de devolución y la distribución de las devoluciones por producto.
+## 4. Criterio del grupo VIP e identificación de los clientes VIP
 
-## Principales resultados
+Para definir el grupo VIP se utiliza como criterio que pertenezcan al **20 % de los clientes compradores con mayores ingresos**.
 
-### Clientes y grupo VIP
+El 20 % de los 48 clientes compradores corresponde a **10 clientes**, que forman el grupo VIP.
 
-La base de datos cuenta con **50 clientes registrados**, de los cuales **48 han realizado al menos una compra**.
+Este 20 % es un criterio definido para el análisis y no una regla fija del negocio.
 
-A partir de estos 48 clientes compradores, se define el grupo VIP como el **20 % con mayores ingresos**, formado por **10 clientes**.
+Los 10 clientes VIP son:
 
-Estos 10 clientes generan **10.074,20 €**, el **39,5 % de los ingresos totales**.
+| Cliente |   Ingresos |
+| ------- | ---------: |
+| 31      | 1.613,50 € |
+| 9       | 1.364,30 € |
+| 19      | 1.083,90 € |
+| 1       | 1.053,50 € |
+| 34      |   934,00 € |
+| 13      |   882,90 € |
+| 15      |   794,30 € |
+| 36      |   783,00 € |
+| 41      |   782,70 € |
+| 11      |   782,10 € |
 
-Esto muestra una cierta concentración de los ingresos: el 20 % de los clientes genera aproximadamente el 40 % de las ventas, aunque no se trata de una distribución 80/20.
+## 5. Peso del grupo VIP y no VIP en el negocio
 
-Además, el ingreso medio de un cliente VIP es de aproximadamente **1.007 €**, frente a unos **406 € por cliente no VIP**. Por tanto, un cliente VIP genera, de media, aproximadamente **2,5 veces más ingresos** que un cliente no VIP.
+Los 10 clientes VIP generan **10.074,20 €**, que representan aproximadamente el **39,5 % de los ingresos totales**.
 
-### Impacto de las devoluciones
+Los 38 clientes no VIP generan los **15.440,70 € restantes**, aproximadamente el **60,5 %**.
 
-Los ingresos generados no reflejan por sí solos el valor de los clientes. Al considerar las devoluciones, el grupo VIP acumula un impacto de **1.738,30 €**, reduciendo sus ingresos de **10.074,20 € a 8.335,90 €**.
+El ingreso medio también muestra una diferencia importante:
 
-Esto muestra que las devoluciones pueden modificar de forma significativa el valor generado por determinados clientes.
+* **Cliente VIP:** aproximadamente 1.007 €.
+* **Cliente no VIP:** aproximadamente 406 €.
 
-### Cliente con mayor impacto
+Por tanto, un cliente VIP genera de media unas **2,5 veces más ingresos** que un cliente no VIP.
 
-El **cliente 9** es el caso más destacado. Genera **1.364,30 € en ingresos**, pero acumula **604,50 € de impacto por devoluciones**.
+El negocio está relativamente repartido y no depende mayoritariamente del grupo VIP, aunque estos clientes tienen un valor individual claramente superior.
 
-Como consecuencia, sus ingresos ajustados se reducen a **759,80 €** y pasa del **segundo puesto por ingresos al séptimo** después de considerar las devoluciones.
+## 6. Impacto de las devoluciones en los VIP
 
-Este caso muestra que un cliente que inicialmente se encuentra entre los que más ingresos generan no necesariamente mantiene la misma posición cuando se considera el impacto de sus devoluciones.
+Los clientes VIP acumulan un impacto de devoluciones de **1.738,30 €**.
 
-### Motivos de devolución
+El impacto no está repartido de la misma manera entre todos los clientes.
 
-Los principales motivos de devolución son **“producto defectuoso”** y **“llegó dañado”**.
+Destaca especialmente el **cliente 9**, que genera 1.364,30 € de ingresos pero acumula **604,50 € de impacto por devoluciones**.
 
-En conjunto, representan **974 €**, aproximadamente el **56 % del impacto total de las devoluciones de los clientes VIP**.
+También presentan un impacto elevado los clientes **13 y 15**, con 294,70 € cada uno.
 
-El análisis de las devoluciones por producto no muestra una concentración relevante: **ningún producto acumula un volumen elevado de devoluciones**.
+En cambio, los clientes **31, 34, 36 y 41** no presentan devoluciones.
 
-Por tanto, los datos apuntan más a revisar las **causas de las devoluciones y los procesos de preparación y envío** que a un problema concentrado en un producto concreto.
+Esto muestra que pertenecer al grupo VIP por volumen de ingresos no significa necesariamente que todos los clientes tengan el mismo valor una vez consideradas las devoluciones.
 
-## Acciones propuestas
+## 7. Valor de los clientes después de devoluciones
 
-A partir de los resultados, se plantean tres líneas de actuación:
+Para valorar mejor a cada cliente se calcula un valor ajustado:
 
-* **Revisar los procesos de calidad, preparación y envío**, especialmente en los casos de producto defectuoso o producto que llega dañado.
-* **Analizar los clientes VIP con mayor impacto de devoluciones**, como los clientes 9, 13 y 15, para identificar patrones y posibles causas.
-* **Fidelizar a los clientes situados justo por debajo del grupo VIP** mediante puntos, descuentos u otras ventajas para clientes recurrentes, con el objetivo de aumentar su valor y acercarlos al grupo VIP.
+**Valor ajustado = ingresos − reembolsos − costes de gestión**
 
-## Estructura del proyecto
+El resultado permite comparar el valor de los clientes después de considerar el impacto económico de sus devoluciones.
 
-```text
-walk-run-house/
-│
-├── 001_data_base.sql
-├── 002_data_insert.sql
-├── 003_data_clean.sql
-├── 004_analysis_vip.sql
-│
-├── diagramaEER.pdf
-└── README.md
-```
+El cliente 9 es el caso más relevante: pasa de ser el **segundo cliente con mayores ingresos** a ocupar una posición mucho más baja cuando se tienen en cuenta sus devoluciones.
 
-**Nota:** Las credenciales de conexión a MySQL se almacenan en un archivo `.env`, que está excluido del repositorio mediante `.gitignore`.
+Sus ingresos pasan de **1.364,30 € a 759,80 €**.
 
-## Herramientas
+Esto muestra que analizar únicamente los ingresos puede sobreestimar el valor real de determinados clientes.
 
-* **MySQL**
-* **MySQL Workbench**
+## 8. Motivos de devolución
+
+Los principales motivos de devolución entre los clientes VIP son:
+
+* **Producto defectuoso:** 6 devoluciones, con un impacto de 444,40 €.
+* **Llegó dañado:** 3 devoluciones, con un impacto de 529,60 €.
+
+Estos dos motivos concentran **974,00 €**, aproximadamente el **56 % del impacto total de las devoluciones de los VIP**.
+
+Aunque "producto defectuoso" presenta más devoluciones, "llegó dañado" genera un mayor impacto económico.
+
+Además, las devoluciones no se concentran en un producto concreto.
+
+Por ello, se propone revisar los procesos de **calidad, preparación y envío** para identificar posibles causas de estos problemas.
+
+## 9. Conclusiones
+
+El análisis muestra que:
+
+* El grupo VIP representa el **20 % de los clientes compradores**, pero genera aproximadamente el **39,5 % de los ingresos**.
+* Los clientes VIP generan, de media, unas **2,5 veces más ingresos** que los clientes no VIP.
+* El negocio no depende exclusivamente de los clientes VIP, ya que la mayor parte de los ingresos procede del resto de clientes.
+* Las devoluciones tienen un impacto relevante dentro del grupo VIP.
+* El cliente 9 destaca por su elevado impacto de devoluciones y muestra cómo el ranking de clientes puede cambiar cuando se tiene en cuenta el valor después de devoluciones.
+* Los motivos "producto defectuoso" y "llegó dañado" concentran una parte importante del impacto económico de las devoluciones.
+* No se observa una concentración clara de las devoluciones en un producto concreto.
+
+## 10. Acciones propuestas
+
+**1. Revisar los procesos de calidad, preparación y envío**
+
+Analizar los casos de productos defectuosos o dañados para identificar posibles causas y reducir el impacto de las devoluciones.
+
+**2. Revisar los clientes VIP con mayor impacto de devoluciones**
+
+Analizar especialmente los clientes 9, 13 y 15 para identificar patrones y entender por qué una parte importante de sus ingresos termina afectada por devoluciones.
+
+**3. Trabajar la fidelización de los clientes próximos al grupo VIP**
+
+Identificar a los clientes que generan ingresos elevados pero todavía no pertenecen al grupo VIP y plantear acciones de fidelización, como ventajas por recurrencia, programas de puntos o promociones personalizadas, con el objetivo de aumentar su valor.
+
