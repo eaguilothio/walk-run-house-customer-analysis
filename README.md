@@ -6,9 +6,7 @@ El proyecto parte del diseño de una base de datos, continúa con la inserción 
 
 ## 1. Pregunta de negocio
 
-Dentro de nuestros mejores clientes (VIP), ¿quién es realmente valioso una vez descontado el impacto de las devoluciones y a quién conviene revisar?
-
-El análisis se centra en comparar los clientes del grupo VIP entre sí para identificar diferencias en el valor que generan y detectar posibles oportunidades de mejora.
+¿Qué clientes aportan mayor valor al negocio teniendo en cuenta sus ingresos y devoluciones?
 
 ## 2. Datos utilizados
 
